@@ -1,7 +1,6 @@
 -- ======================
 -- POPULANDO AS TABELAS
 -- ======================
-
 -- EMPRESA
 INSERT INTO empresa (id_empresa, nome, cnpj) VALUES
 (1, 'VAction Tecnologia', '12.345.678/0001-99'),
@@ -26,14 +25,14 @@ INSERT INTO decisao (id_decisao, nome) VALUES
 (2, 'REPROVADO');
 
 -- USUARIOS
-INSERT INTO usuario (id_usuario, nome, email, area, senha, cargo, data_admissao, cpf, saldo_ferias, fk_empresa, fk_nivel) VALUES
-(1, 'Gabriel Duarte', 'gabriel@vaction.com', 'TI', '123456', 'Desenvolvedor', '2022-05-10', '12345678900', '30', 1, 1),
-(2, 'Ana Souza', 'ana@vaction.com', 'TI', '123456', 'Gerente de TI', '2020-03-15', '32165498700', '45', 1, 2),
-(3, 'Carlos Oliveira', 'carlos@vaction.com', 'RH', '123456', 'Analista RH', '2019-01-20', '45678912300', '40', 1, 3),
-(4, 'Mariana Lima', 'mariana@bancoxpto.com', 'Financeiro', '123456', 'Analista Financeiro', '2021-11-05', '65498732100', '20', 2, 1),
-(5, 'Fernanda Costa', 'fernanda@bancoxpto.com', 'Financeiro', '123456', 'Coordenadora Financeiro', '2018-07-22', '98732165400', '35', 2, 2),
-(6, 'Ricardo Almeida', 'ricardo@bancoxpto.com', 'RH', '123456', 'Especialista RH', '2017-09-10', '74185296300', '50', 2, 3),
-(7, 'Danilo Silvestre', 'danilo@vaction.com', 'TI', '123456', 'Analista', '2022-05-10', '37827313323', '30', 1, 1);
+INSERT INTO usuario (id_usuario, nome, email, area, senha, cargo, data_admissao, cpf, fk_empresa, fk_nivel) VALUES
+(1, 'Gabriel Duarte', 'gabriel@vaction.com', 'TI', '123456', 'Desenvolvedor', '2022-05-10', '12345678900', 1, 1),
+(2, 'Ana Souza', 'ana@vaction.com', 'TI', '123456', 'Gerente de TI', '2020-03-15', '32165498700', 1, 2),
+(3, 'Carlos Oliveira', 'carlos@vaction.com', 'RH', '123456', 'Analista RH', '2019-01-20', '45678912300', 1, 3),
+(4, 'Mariana Lima', 'mariana@bancoxpto.com', 'Financeiro', '123456', 'Analista Financeiro', '2021-11-05', '65498732100', 2, 1),
+(5, 'Fernanda Costa', 'fernanda@bancoxpto.com', 'Financeiro', '123456', 'Coordenadora Financeiro', '2018-07-22', '98732165400', 2, 2),
+(6, 'Ricardo Almeida', 'ricardo@bancoxpto.com', 'RH', '123456', 'Especialista RH', '2017-09-10', '74185296300', 2, 3),
+(7, 'Danilo Silvestre', 'danilo@vaction.com', 'TI', '123456', 'Analista', '2022-05-10', '37827313323', 1, 1);
 
 UPDATE Usuario SET fk_aprovador = 2 WHERE id_usuario = 1;
 UPDATE Usuario SET fk_aprovador = 3 WHERE id_usuario = 2;
@@ -43,6 +42,8 @@ UPDATE Usuario SET fk_aprovador = 6 WHERE id_usuario = 5;
 UPDATE Usuario SET fk_aprovador = NULL WHERE id_usuario = 6;
 UPDATE Usuario SET fk_aprovador = 2 WHERE id_usuario = 7;
 
+update pedido set fk_status = 2 where id_pedido = 3;
+select * from pedido;
 
 -- PEDIDO DE FERIAS
 INSERT INTO pedido (id_pedido, data_inicio, data_fim, data_solicitacao, ultima_atualizacao, fk_usuario, fk_status) VALUES
