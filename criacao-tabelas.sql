@@ -54,6 +54,7 @@ CREATE TABLE pedido (
     data_inicio DATE NOT NULL,
     data_fim DATE NOT NULL,
     data_solicitacao DATE NOT NULL,
+    dias_usufruidos INT,
     ultima_atualizacao DATE,
     fk_usuario INT NOT NULL,
     fk_status INT NOT NULL,

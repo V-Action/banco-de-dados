@@ -26,7 +26,7 @@ INSERT INTO decisao (id_decisao, nome) VALUES
 
 -- USUARIOS
 INSERT INTO usuario (id_usuario, nome, email, area, senha, cargo, data_admissao, cpf, fk_empresa, fk_nivel) VALUES
-(1, 'Gabriel Duarte', 'gabriel@vaction.com', 'TI', '123456', 'Desenvolvedor', '2022-05-10', '12345678900', 1, 1),
+(1, 'Gabriel Duarte', 'gabriel@vaction.com', 'TI', '123456', 'Desenvolvedor', '2024-10-18', '12345678900', 1, 1),
 (2, 'Ana Souza', 'ana@vaction.com', 'TI', '123456', 'Gerente de TI', '2020-03-15', '32165498700', 1, 2),
 (3, 'Carlos Oliveira', 'carlos@vaction.com', 'RH', '123456', 'Analista RH', '2019-01-20', '45678912300', 1, 3),
 (4, 'Mariana Lima', 'mariana@bancoxpto.com', 'Financeiro', '123456', 'Analista Financeiro', '2021-11-05', '65498732100', 2, 1),
@@ -46,9 +46,9 @@ update pedido set fk_status = 2 where id_pedido = 3;
 select * from pedido;
 
 -- PEDIDO DE FERIAS
-INSERT INTO pedido (id_pedido, data_inicio, data_fim, data_solicitacao, ultima_atualizacao, fk_usuario, fk_status) VALUES
-(1, '2025-07-01', '2025-07-15', '2025-03-01', '2025-03-02', 1, 1),
-(2, '2025-08-05', '2025-08-20', '2025-03-10', '2025-03-15', 4, 2);
+INSERT INTO pedido (id_pedido, data_inicio, data_fim, data_solicitacao, ultima_atualizacao, dias_usufruidos, fk_usuario, fk_status) VALUES
+(1, '2025-07-01', '2025-07-15', '2025-03-01', '2025-03-02', 14, 1, 1),
+(2, '2025-08-05', '2025-08-20', '2025-03-10', '2025-03-15', 11, 4, 2);
 
 -- HISTORICO (rastreamento do processo)
 INSERT INTO historico (id_alteracao, data_alteracao, observacao, fk_pedido, fk_usuario, fk_decisao) VALUES
