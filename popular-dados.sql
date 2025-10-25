@@ -1,58 +1,101 @@
 -- ======================
--- POPULANDO AS TABELAS
+-- EMPRESAS
 -- ======================
--- EMPRESA
-INSERT INTO empresa (id_empresa, nome, cnpj) VALUES
-(1, 'VAction Tecnologia', '12.345.678/0001-99'),
-(2, 'Banco XPTO', '98.765.432/0001-11');
+INSERT INTO empresa (nome, cnpj) VALUES
+('VAction Tecnologia', '12.345.678/0001-99'),
+('Banco XPTO', '98.765.432/0001-11');
 
--- NIVEL DE ACESSO
-INSERT INTO nivel_acesso (id_nivel, descricao) VALUES
-(1, 'COLABORADOR'),
-(2, 'GESTOR'),
-(3, 'RH');
+-- ======================
+-- NÍVEL DE ACESSO
+-- ======================
+INSERT INTO nivel_acesso (descricao) VALUES
+('COLABORADOR'), -- 1
+('GESTOR'),      -- 2
+('RH');          -- 3
 
--- STATUS (4 registros)
-INSERT INTO status (id_status, nome) VALUES
-(1, 'PENDENTE_GESTOR'),
-(2, 'PENDENTE_RH'),
-(3, 'APROVADO'),
-(4, 'REPROVADO');
+-- ======================
+-- STATUS
+-- ======================
+INSERT INTO status (nome) VALUES
+('PENDENTE_GESTOR'), -- 1
+('PENDENTE_RH'),     -- 2
+('APROVADO'),        -- 3
+('REPROVADO');       -- 4
 
--- DECISAO (2 registros)
-INSERT INTO decisao (id_decisao, nome) VALUES
-(1, 'APROVADO'),
-(2, 'REPROVADO');
+-- ======================
+-- DECISÃO
+-- ======================
+INSERT INTO decisao (nome) VALUES
+('APROVADO'), -- 1
+('REPROVADO'); -- 2
 
--- USUARIOS
-INSERT INTO usuario (id_usuario, nome, email, area, senha, cargo, data_admissao, cpf, fk_empresa, fk_nivel) VALUES
-(1, 'Gabriel Duarte', 'gabriel@vaction.com', 'TI', '123456', 'Desenvolvedor', '2024-10-18', '12345678900', 1, 1),
-(2, 'Ana Souza', 'ana@vaction.com', 'TI', '123456', 'Gerente de TI', '2020-03-15', '32165498700', 1, 2),
-(3, 'Carlos Oliveira', 'carlos@vaction.com', 'RH', '123456', 'Analista RH', '2019-01-20', '45678912300', 1, 3),
-(4, 'Mariana Lima', 'mariana@bancoxpto.com', 'Financeiro', '123456', 'Analista Financeiro', '2021-11-05', '65498732100', 2, 1),
-(5, 'Fernanda Costa', 'fernanda@bancoxpto.com', 'Financeiro', '123456', 'Coordenadora Financeiro', '2018-07-22', '98732165400', 2, 2),
-(6, 'Ricardo Almeida', 'ricardo@bancoxpto.com', 'RH', '123456', 'Especialista RH', '2017-09-10', '74185296300', 2, 3),
-(7, 'Danilo Silvestre', 'danilo@vaction.com', 'TI', '123456', 'Analista', '2022-05-10', '37827313323', 1, 1);
+-- ======================
+-- USUÁRIOS - Empresa 1
+-- ======================
 
-UPDATE Usuario SET fk_aprovador = 2 WHERE id_usuario = 1;
-UPDATE Usuario SET fk_aprovador = 3 WHERE id_usuario = 2;
-UPDATE Usuario SET fk_aprovador = NULL WHERE id_usuario = 3;
-UPDATE Usuario SET fk_aprovador = 5 WHERE id_usuario = 4;
-UPDATE Usuario SET fk_aprovador = 6 WHERE id_usuario = 5;
-UPDATE Usuario SET fk_aprovador = NULL WHERE id_usuario = 6;
-UPDATE Usuario SET fk_aprovador = 2 WHERE id_usuario = 7;
+-- RHs
+INSERT INTO usuario (nome, email, area, senha, cargo, data_admissao, cpf, fk_empresa, fk_nivel) VALUES
+('Carlos RH', 'carlos.rh@vaction.com', 'RH', '123456', 'RH Manager', '2024-03-15', '11111111111', 1, 3),
+('Marina RH', 'marina.rh@vaction.com', 'RH', '123456', 'RH Manager', '2024-05-20', '22222222222', 1, 3);
 
-update pedido set fk_status = 2 where id_pedido = 3;
-select * from pedido;
+-- Gestores
+INSERT INTO usuario (nome, email, area, senha, cargo, data_admissao, cpf, fk_empresa, fk_nivel, fk_aprovador) VALUES
+('Ana Gestor TI', 'ana.gestor@vaction.com', 'TI', '123456', 'Gerente TI', '2024-07-10', '33333333333', 1, 2, 1),
+('Pedro Gestor Fin', 'pedro.gestor@vaction.com', 'Financeiro', '123456', 'Gerente Financeiro', '2025-01-15', '44444444444', 1, 2, 2),
+('Luisa Gestor Marketing', 'luisa.gestor@vaction.com', 'Marketing', '123456', 'Gerente Marketing', '2025-03-05', '55555555555', 1, 2, 1);
 
--- PEDIDO DE FERIAS
-INSERT INTO pedido (id_pedido, data_inicio, data_fim, data_solicitacao, ultima_atualizacao, dias_usufruidos, fk_usuario, fk_status) VALUES
-(1, '2025-07-01', '2025-07-15', '2025-03-01', '2025-03-02', 14, 1, 1),
-(2, '2025-08-05', '2025-08-20', '2025-03-10', '2025-03-15', 11, 4, 2);
+-- Colaboradores
+INSERT INTO usuario (nome, email, area, senha, cargo, data_admissao, cpf, fk_empresa, fk_nivel, fk_aprovador) VALUES
+('Joao Colab', 'joao@vaction.com', 'TI', '123456', 'Dev', '2025-02-01', '66666666666', 1, 1, 3),
+('Maria Colab', 'maria@vaction.com', 'TI', '123456', 'Dev', '2025-03-05', '77777777777', 1, 1, 3),
+('Lucas Colab', 'lucas@vaction.com', 'Financeiro', '123456', 'Analista', '2025-04-10', '88888888888', 1, 1, 4),
+('Sofia Colab', 'sofia@vaction.com', 'Financeiro', '123456', 'Analista', '2025-05-15', '99999999999', 1, 1, 4),
+('Rafael Colab', 'rafael@vaction.com', 'Marketing', '123456', 'Analista', '2025-06-20', '10101010101', 1, 1, 5);
 
--- HISTORICO (rastreamento do processo)
-INSERT INTO historico (id_alteracao, data_alteracao, observacao, fk_pedido, fk_usuario, fk_decisao) VALUES
-(1, '2025-03-02', 'Solicitação enviada ao gestor', 1, 1, NULL),
-(2, '2025-03-03', 'Gestor aprovou e enviou para RH', 1, 2, 1),
-(3, '2025-03-15', 'Solicitação encaminhada ao RH', 2, 4, NULL),
-(4, '2025-03-18', 'RH reprovou por conflito de agenda', 2, 6, 2);
+-- ======================
+-- PEDIDOS DE FÉRIAS
+-- ======================
+
+-- Colaboradores
+INSERT INTO pedido (data_inicio, data_fim, data_solicitacao, ultima_atualizacao, dias_usufruidos, fk_usuario, fk_status) VALUES
+('2024-07-01','2024-07-16','2024-06-01','2024-06-05',16,1,3),
+('2024-08-15','2024-08-31','2024-07-20','2024-07-22',17,2,3),
+('2025-01-10','2025-01-25','2024-12-01','2024-12-05',16,3,3),
+('2025-03-05','2025-03-20','2025-02-01','2025-02-04',16,4,3),
+('2025-05-10','2025-05-25','2025-04-01','2025-04-05',16,5,3);
+
+-- Gestores
+INSERT INTO pedido (data_inicio, data_fim, data_solicitacao, ultima_atualizacao, dias_usufruidos, fk_usuario, fk_status) VALUES
+('2024-12-01','2024-12-16','2024-11-01','2024-11-05',16,3,3),
+('2025-06-01','2025-06-16','2025-05-01','2025-05-05',16,4,3);
+
+-- ======================
+-- PEDIDOS DE FÉRIAS PENDENTES
+-- ======================
+
+-- Colaboradores - pendente gestor
+INSERT INTO pedido (data_inicio, data_fim, data_solicitacao, ultima_atualizacao, dias_usufruidos, fk_usuario, fk_status) VALUES
+('2025-07-15','2025-07-31','2025-06-20','2025-06-22',17,1,1),
+('2025-08-01','2025-08-16','2025-07-05','2025-07-06',15,2,1),
+('2025-09-10','2025-09-25','2025-08-01','2025-08-05',15,3,1);
+
+-- Gestores - pendente RH
+INSERT INTO pedido (data_inicio, data_fim, data_solicitacao, ultima_atualizacao, dias_usufruidos, fk_usuario, fk_status) VALUES
+('2025-10-01','2025-10-16','2025-09-01','2025-09-05',16,3,2),
+('2025-11-05','2025-11-20','2025-10-01','2025-10-05',16,4,2);
+-- ======================
+-- HISTÓRICO
+-- ======================
+
+-- Colaboradores
+INSERT INTO historico (data_alteracao, observacao, fk_pedido, fk_usuario, fk_decisao) VALUES
+('2024-06-05','Aprovado pelo gestor',1,3,1),
+('2024-07-22','Aprovado pelo gestor',2,4,1),
+('2024-12-05','Aprovado pelo gestor',3,5,1),
+('2025-02-04','Reprovado pelo RH',4,6,2),
+('2025-04-05','Aprovado pelo gestor',5,7,1),
+
+-- Gestores
+('2024-11-05','Aprovado pelo RH',6,3,1),
+('2025-05-05','Aprovado pelo RH',7,4,1);
+

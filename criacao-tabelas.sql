@@ -40,6 +40,7 @@ CREATE TABLE usuario (
     cargo VARCHAR(45),
     data_admissao DATE NOT NULL,
     cpf VARCHAR(45) UNIQUE NOT NULL,
+    autenticado BOOLEAN,
     fk_empresa INT NOT NULL,
     fk_aprovador INT NULL,
     fk_nivel INT NOT NULL,
