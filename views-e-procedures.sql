@@ -259,3 +259,29 @@ END $$
 DELIMITER ;
 
 call sp_sla_medio_por_empresa(1);
+
+CREATE PROCEDURE grafico_ferias_por_mes()
+BEGIN
+    SELECT 
+        CASE 
+            WHEN mes = 1 THEN 'Janeiro'
+            WHEN mes = 2 THEN 'Fevereiro'
+            WHEN mes = 3 THEN 'Março'
+            WHEN mes = 4 THEN 'Abril'
+            WHEN mes = 5 THEN 'Maio'
+            WHEN mes = 6 THEN 'Junho'
+            WHEN mes = 7 THEN 'Julho'
+            WHEN mes = 8 THEN 'Agosto'
+            WHEN mes = 9 THEN 'Setembro'
+            WHEN mes = 10 THEN 'Outubro'
+            WHEN mes = 11 THEN 'Novembro'
+            WHEN mes = 12 THEN 'Dezembro'
+        END AS nome_mes,
+        COUNT(*) AS total
+    FROM ferias
+    WHERE mes IS NOT NULL
+    GROUP BY mes
+    ORDER BY mes
+END $$
+
+DELIMITER ;

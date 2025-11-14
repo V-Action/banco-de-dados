@@ -75,3 +75,18 @@ CREATE TABLE historico (
     FOREIGN KEY (fk_usuario) REFERENCES usuario(id_usuario),
     FOREIGN KEY (fk_decisao) REFERENCES decisao(id_decisao)
 );
+
+-- BASE DE DADOS
+CREATE TABLE ferias (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    matricula VARCHAR(20),
+    nome VARCHAR(120),
+    setor VARCHAR(150),
+    periodo_inicio DATE,
+    periodo_fim DATE,
+    gozo_inicio DATE,
+    gozo_fim DATE,
+    mes INT,
+    ano INT,
+    abono boolean
+);
