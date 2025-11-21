@@ -1,3 +1,4 @@
+USE Vaction;
 DROP PROCEDURE IF EXISTS sp_analise_ferias_por_mes_empresa;
 DELIMITER $$
 
