@@ -261,6 +261,9 @@ DELIMITER ;
 
 call sp_sla_medio_por_empresa(1);
 
+DROP PROCEDURE IF EXISTS grafico_ferias_por_mes;
+DELIMITER $$
+
 CREATE PROCEDURE grafico_ferias_por_mes()
 BEGIN
     SELECT 
@@ -282,7 +285,7 @@ BEGIN
     FROM ferias
     WHERE mes IS NOT NULL
     GROUP BY mes
-    ORDER BY mes
+    ORDER BY mes;
 END $$
 
 DELIMITER ;
